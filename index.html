@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="bikesApp">
 <head>
 	<meta charset='utf-8'>
 	<title>Mission Bicycles</title>
@@ -7,16 +7,45 @@
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:900italic|Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/css/normalize.css">
+	<link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
-	<header>
-		<img src="/img/logo.png">
-	</header>
-	<div class="slider">
 
+<body ng-controller="mainController">
+
+	<header>
+		<img src="/images/logo.png">
+	</header>
+
+	<div class="slider">
+		<div class="sliderImgCont" ng-repeat="product in catalogue.products">
+			<div class="imgHeader">
+				<div class="modelNo">{{product.modelNo}}</div>
+				<div class="modelName">{{product.name}}</div>
+			</div>
+			<img ng-src="/images/slideshow/{{product.id}}.png">
+		</div>
+		<div class="sliderNav">
+			<div class="navDotCont" ng-repeat="product in catalogue.products">
+				<a class="navDot" ng-click="goToSlide(product.id)">&bull;</a>
+			</div>
+		</div>
+		<div class="leftArrow" ng-click="prev()">
+			<i class="fa fa-chevron-left"></i>
+		</div>
+		<div class="rightArrow" ng-click="next()">
+			<i class="fa fa-chevron-right"></i>
+		</div>
 	</div>
+
 	<div class="buttonCont">
-		
+		<button ng-click="openQuickView()">QUICK VIEW</button>
 	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-touch.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>
+
+
+	<script src="/js/app.js"></script>
 </body>
 </html>
