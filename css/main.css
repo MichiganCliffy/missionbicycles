@@ -55,7 +55,8 @@ header img {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.buttonCont button:hover {
+.buttonCont button:hover,
+.buttonCont button:active {
   background-color: #333333;
   color: #ffffff;
 }
@@ -213,7 +214,8 @@ header img {
   padding: 20% 0 10%;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 40px #000000;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 @media (min-width: 768px) {
   .quickViewBack {
@@ -221,10 +223,12 @@ header img {
   }
 }
 .quickViewBox {
+  position: relative;
   display: inline-block;
   width: 83%;
   max-width: 860px;
   background-color: #ffffff;
+  box-shadow: 0 0 40px #000000;
 }
 @media (min-width: 768px) {
   .quickViewBox {
@@ -333,10 +337,16 @@ header img {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.quickViewBox .copy button.buyNow:hover {
+.quickViewBox .copy button.buyNow:hover,
+.quickViewBox .copy button.buyNow:active {
   background-color: #333333;
 }
-.quickViewBox .close {
+.quickViewBox:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.close {
   position: absolute;
   top: 5px;
   right: 20px;
@@ -347,18 +357,42 @@ header img {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.quickViewBox .close:hover {
+.close:hover {
   color: #333333;
 }
+.close.fullClose {
+  display: none;
+  top: 13px;
+  right: 25px;
+  padding: 0;
+}
 @media (min-width: 768px) {
-  .quickViewBox .close {
-    top: 13px;
-    right: 25px;
-    padding: 0;
+  .close {
+    display: none;
+  }
+  .close.fullClose {
+    display: inline-block;
   }
 }
-.quickViewBox:after {
-  content: "";
-  display: table;
-  clear: both;
+.quickViewBack.ng-hide-add.ng-hide-add-active,
+.quickViewBack.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.quickViewBack.ng-hide {
+  opacity: 0;
+}
+.quickViewBack {
+  opacity: 1;
+}
+.quickViewBox.ng-hide-add.ng-hide-add-active,
+.quickViewBox.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all 0.7s;
+  transition: all 0.7s;
+}
+.quickViewBox.ng-hide {
+  top: -1000px;
+}
+.quickViewBox {
+  top: 0;
 }

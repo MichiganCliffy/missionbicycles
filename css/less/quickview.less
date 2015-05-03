@@ -10,17 +10,19 @@
 	padding: 20% 0 10%;
 	text-align: center;
 	background-color: rgba(0,0,0, 0.8);
-	box-shadow: 0 0 40px @black;
+	.transition(0.5s);
 
 	@media (min-width: 768px) {
 		padding: 9% 0;
 	}
 }
 .quickViewBox {
+	position: relative;
 	display: inline-block;
 	width: 83%;
 	max-width: 860px;
 	background-color: @white;
+	box-shadow: 0 0 40px @black;
 
 	@media (min-width: 768px) {
 		position: relative;
@@ -126,34 +128,44 @@
 			border: none;
 			.transition;
 
-			&:hover {
+			&:hover,
+			&:active {
 				background-color: @textColor;
 			}
-		}
-	}
-	.close {
-		position: absolute;
-		top: 5px;
-		right: 20px;
-		padding: 15px;
-		font-size: 2.1em;
-		color: @lighterGrey;
-		cursor: pointer;
-		.transition;
-
-		&:hover {
-			color: @textColor;
-		}
-
-		@media (min-width:768px) {
-			top: 13px;
-			right: 25px;
-			padding: 0;			
 		}
 	}
 	&:after {
 		content: "";
 		display: table;
 		clear: both;
+	}
+}
+.close {
+	position: absolute;
+	top: 5px;
+	right: 20px;
+	padding: 15px;
+	font-size: 2.1em;
+	color: @lighterGrey;
+	cursor: pointer;
+	.transition;
+
+	&:hover {
+		color: @textColor;
+	}
+
+	&.fullClose {
+		display: none;
+		top: 13px;
+		right: 25px;
+		padding: 0;	
+	}
+
+	@media (min-width:768px) {
+		display: none;
+
+		&.fullClose {
+			display: inline-block;
+		}		
 	}
 }

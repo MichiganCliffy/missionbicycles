@@ -96,7 +96,8 @@ header {
 		border: 2px solid @textColor;
 		.transition;
 
-		&:hover {
+		&:hover,
+		&:active {
 			background-color: @textColor;
 			color: @white;
 		}
@@ -109,3 +110,4 @@ header {
 
 @import "slider.less";
 @import "quickview.less";
+@import "animation.less";

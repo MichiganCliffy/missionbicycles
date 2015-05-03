@@ -88,44 +88,6 @@ bikesApp.controller('mainController', ['$scope', '$http', '$window', '$swipe', f
 		sliderEl.css({'width': sliderWidth, 'left':initialPos});
 	};
 
-	// Create touch event handler
-	$swipe.bind( sliderEl, {
-		'start': function(coords) {
-			startX = coords.x;
-			startY = coords.y;
-
-			startPos = parseInt( sliderEl.css('left'), 10);
-		},
-		'move': function(coords) {
-			var moveDist = startX - coords.x;
-			var slidePos = startPos - moveDist;
-
-			// console.log('Moving...' + moveDist);
-			// console.log('New left pos: '+ slidePos);
-
-			sliderEl.css('left', slidePos);
-		},
-		'end': function(coords) {
-			var fullDist = startX - coords.x;
-			console.log('Just moved '+ fullDist);
-
-			if (fullDist > 100 && ($scope.slidePosition < $scope.itemNumber-1) ) {
-				// next slide
-				sliderEl.css('left', startPos - $scope.itemWidth);
-				$scope.slidePosition++;
-			} else if (fullDist < -100 && ($scope.slidePosition > 0)) {
-				// previous slide
-				sliderEl.css('left', startPos + $scope.itemWidth);
-				$scope.slidePosition--;
-			} else {
-				sliderEl.css('left', startPos);
-			}
-		},
-		'cancel': function(coords) {
-			sliderEl.css('left', startPos);
-		}
-	});
-
 	// Set control actions
 	$scope.slidePosition = 0;
 
@@ -152,6 +114,42 @@ bikesApp.controller('mainController', ['$scope', '$http', '$window', '$swipe', f
 		$scope.slidePosition = slideTarget;
 	};
 
+	// Touch event handler
+	$swipe.bind( sliderEl, {
+		'start': function(coords) {
+			startX = coords.x;
+			startY = coords.y;
+
+			startPos = parseInt( sliderEl.css('left'), 10);
+		},
+		'move': function(coords) {
+			var moveDist = startX - coords.x;
+			var slidePos = startPos - moveDist;
+
+			// Move images with drag
+			sliderEl.css('left', slidePos);
+		},
+		'end': function(coords) {
+			var fullDist = startX - coords.x;
+			var minMoveDist = $scope.itemWidth/2
+			console.log('Just moved '+ fullDist + ' Min Dist: '+ minMoveDist);
+
+			if (fullDist > minMoveDist && ($scope.slidePosition < $scope.itemNumber-1) ) {
+				// next slide
+				sliderEl.css('left', startPos - $scope.itemWidth);
+				$scope.slidePosition++;
+			} else if (fullDist < -minMoveDist && ($scope.slidePosition > 0)) {
+				// previous slide
+				sliderEl.css('left', startPos + $scope.itemWidth);
+				$scope.slidePosition--;
+			} else {
+				sliderEl.css('left', startPos);
+			}
+		},
+		'cancel': function(coords) {
+			sliderEl.css('left', startPos);
+		}
+	});
 
 
 	// QUICK-VIEW POPUP CONTAINER

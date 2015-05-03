@@ -49,8 +49,8 @@
 		<button ng-click="openQV()">QUICK VIEW</button>
 	</div>
 
-	<div class="quickViewBack" ng-if="showQV" ng-cloak>
-		<div class="quickViewBox">
+	<div class="quickViewBack" ng-show="showQV" ng-cloak>
+		<div class="quickViewBox" ng-show="showQV">
 
 			<div class="images">
 				<img class="mainImg" ng-src="/images/slideshow/{{focus.id}}.png">
@@ -80,9 +80,12 @@
 				</div>
 				<button class="buyNow" type="button">BUY NOW - ${{focus.price}}</button>
 			</div>
-			<div class="close" ng-click="closeQV()">
+			<div class="fullClose close" ng-click="closeQV()">
 				<i class="fa fa-times"></i>
 			</div>
+		</div>
+		<div class="mobileClose close" ng-click="closeQV()">
+			<i class="fa fa-times"></i>
 		</div>
 	</div>
 
