@@ -16,16 +16,18 @@
 		<img src="/images/logo.png">
 	</header>
 
-	<div class="slider">
-		<div class="sliderImgCont" ng-repeat="product in catalogue.products">
-			<div class="imgHeader">
-				<div class="modelNo">{{product.modelNo}}</div>
-				<div class="modelName">{{product.name}}</div>
+	<div class="sliderCont">
+		<div class="slider">
+			<div class="sliderImgCont" ng-repeat="product in catalog.products">
+				<div class="imgHeader">
+					<div class="modelNo">{{product.modelNo}}</div>
+					<div class="modelName">{{product.name}}</div>
+				</div>
+				<img class="productImg" ng-src="/images/slideshow/{{product.id}}.png">
 			</div>
-			<img ng-src="/images/slideshow/{{product.id}}.png">
 		</div>
 		<div class="sliderNav">
-			<div class="navDotCont" ng-repeat="product in catalogue.products">
+			<div class="navDotCont" ng-repeat="product in catalog.products">
 				<a class="navDot" ng-click="goToSlide(product.id)">&bull;</a>
 			</div>
 		</div>
@@ -41,6 +43,7 @@
 		<button ng-click="openQuickView()">QUICK VIEW</button>
 	</div>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-touch.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>

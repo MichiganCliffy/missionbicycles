@@ -20,22 +20,52 @@ header {
 header img {
   display: inline-block;
 }
-.slider {
+.sliderCont {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  height: 75%;
+  max-width: 100%;
 }
-.slider .sliderNav {
+.sliderCont .slider {
+  position: relative;
+  width: 100%;
+  left: 10%;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.sliderCont .slider .sliderImgCont {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  width: 20%;
+  text-align: center;
+}
+.sliderCont .slider .sliderImgCont img {
+  height: 100%;
+  width: 100%;
+}
+.sliderCont .slider .sliderImgCont .imgHeader {
+  position: absolute;
+  top: 25px;
+  width: 100%;
+}
+.sliderCont .slider .sliderImgCont .imgHeader .modelNo {
+  text-align: center;
+  font-size: 1.3em;
+}
+.sliderCont .slider .sliderImgCont .imgHeader .modelName {
+  text-align: center;
+  font-size: 4em;
+}
+.sliderCont .sliderNav {
   position: absolute;
   bottom: 0;
   width: 100%;
   text-align: center;
 }
-.slider .sliderNav .navDotCont {
+.sliderCont .sliderNav .navDotCont {
   display: inline-block;
 }
-.slider .sliderNav .navDotCont .navDot {
+.sliderCont .sliderNav .navDotCont .navDot {
   display: inline-block;
   padding: 13px 9px;
   font-size: 2em;
@@ -45,12 +75,12 @@ header img {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.slider .sliderNav .navDotCont .navDot:hover,
-.slider .sliderNav .navDotCont .navDot.active {
+.sliderCont .sliderNav .navDotCont .navDot:hover,
+.sliderCont .sliderNav .navDotCont .navDot.active {
   opacity: 1.0;
 }
-.slider .leftArrow,
-.slider .rightArrow {
+.sliderCont .leftArrow,
+.sliderCont .rightArrow {
   display: inline-block;
   position: absolute;
   top: 48%;
@@ -61,13 +91,13 @@ header img {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.slider .leftArrow:hover,
-.slider .rightArrow:hover,
-.slider .leftArrow.active,
-.slider .rightArrow.active {
+.sliderCont .leftArrow:hover,
+.sliderCont .rightArrow:hover,
+.sliderCont .leftArrow.active,
+.sliderCont .rightArrow.active {
   color: #ffffff;
 }
-.slider .rightArrow {
+.sliderCont .rightArrow {
   left: auto;
   right: 3%;
 }
