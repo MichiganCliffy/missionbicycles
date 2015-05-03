@@ -5,7 +5,8 @@ var bikesApp = angular.module('bikesApp', [
 
 bikesApp.controller('mainController', ['$scope', '$http', '$window', '$swipe', function($scope, $http, $window, $swipe){
 
-	// Get catalogue data
+	// GET DATA
+	//====================
 	// If a multi-page app, would put this in a service
 	var url = 'http://seq-front-end-assessment.s3-website-us-west-2.amazonaws.com/catalog.json';
 	$http.get(url).
@@ -66,11 +67,11 @@ bikesApp.controller('mainController', ['$scope', '$http', '$window', '$swipe', f
 	var setSlider = function(catalog){
 
 		// Test for mobile by screen size
-		var isMobile = ($window.outerWidth < 768) ? 
+		$scope.isMobile = ($window.outerWidth < 768) ? 
 			true : false;
 		$scope.itemNumber = catalog.products.length;
 
-		if (isMobile) {
+		if ($scope.isMobile) {
 			console.log('mobile device');
 			console.log('Width: '+ $window.outerWidth);
 
@@ -115,41 +116,43 @@ bikesApp.controller('mainController', ['$scope', '$http', '$window', '$swipe', f
 	};
 
 	// Touch event handler
-	$swipe.bind( sliderEl, {
-		'start': function(coords) {
-			startX = coords.x;
-			startY = coords.y;
+	if ($scope.isMobile) {
+		$swipe.bind( sliderEl, {
+			'start': function(coords) {
+				startX = coords.x;
+				startY = coords.y;
 
-			startPos = parseInt( sliderEl.css('left'), 10);
-		},
-		'move': function(coords) {
-			var moveDist = startX - coords.x;
-			var slidePos = startPos - moveDist;
+				startPos = parseInt( sliderEl.css('left'), 10);
+			},
+			'move': function(coords) {
+				var moveDist = startX - coords.x;
+				var slidePos = startPos - moveDist;
 
-			// Move images with drag
-			sliderEl.css('left', slidePos);
-		},
-		'end': function(coords) {
-			var fullDist = startX - coords.x;
-			var minMoveDist = $scope.itemWidth/2
-			console.log('Just moved '+ fullDist + ' Min Dist: '+ minMoveDist);
+				// Move images with drag
+				sliderEl.css('left', slidePos);
+			},
+			'end': function(coords) {
+				var fullDist = startX - coords.x;
+				var minMoveDist = $scope.itemWidth/2
+				console.log('Just moved '+ fullDist + ' Min Dist: '+ minMoveDist);
 
-			if (fullDist > minMoveDist && ($scope.slidePosition < $scope.itemNumber-1) ) {
-				// next slide
-				sliderEl.css('left', startPos - $scope.itemWidth);
-				$scope.slidePosition++;
-			} else if (fullDist < -minMoveDist && ($scope.slidePosition > 0)) {
-				// previous slide
-				sliderEl.css('left', startPos + $scope.itemWidth);
-				$scope.slidePosition--;
-			} else {
+				if (fullDist > minMoveDist && ($scope.slidePosition < $scope.itemNumber-1) ) {
+					// next slide
+					sliderEl.css('left', startPos - $scope.itemWidth);
+					$scope.slidePosition++;
+				} else if (fullDist < -minMoveDist && ($scope.slidePosition > 0)) {
+					// previous slide
+					sliderEl.css('left', startPos + $scope.itemWidth);
+					$scope.slidePosition--;
+				} else {
+					sliderEl.css('left', startPos);
+				}
+			},
+			'cancel': function(coords) {
 				sliderEl.css('left', startPos);
 			}
-		},
-		'cancel': function(coords) {
-			sliderEl.css('left', startPos);
-		}
-	});
+		});
+	}
 
 
 	// QUICK-VIEW POPUP CONTAINER
@@ -178,6 +181,10 @@ bikesApp.controller('mainController', ['$scope', '$http', '$window', '$swipe', f
 			"/images/slideshow/"+ $scope.focus.id + ".png";
 
 		mainImg.attr('src', newSrc);
+	}
+
+	$scope.thankYou = function(){
+		angular.element('.buyNow').text('THANKS!').addClass('disable');
 	}
 
 

@@ -219,7 +219,7 @@ header img {
 }
 @media (min-width: 768px) {
   .quickViewBack {
-    padding: 9% 0;
+    padding: 7% 0;
   }
 }
 .quickViewBox {
@@ -229,11 +229,6 @@ header img {
   max-width: 860px;
   background-color: #ffffff;
   box-shadow: 0 0 40px #000000;
-}
-@media (min-width: 768px) {
-  .quickViewBox {
-    position: relative;
-  }
 }
 .quickViewBox .images {
   display: inline-block;
@@ -340,6 +335,10 @@ header img {
 .quickViewBox .copy button.buyNow:hover,
 .quickViewBox .copy button.buyNow:active {
   background-color: #333333;
+}
+.quickViewBox .copy button.buyNow.disable {
+  background-color: #333333;
+  cursor: defualt;
 }
 .quickViewBox:after {
   content: "";

@@ -13,7 +13,7 @@
 	.transition(0.5s);
 
 	@media (min-width: 768px) {
-		padding: 9% 0;
+		padding: 7% 0;
 	}
 }
 .quickViewBox {
@@ -23,10 +23,6 @@
 	max-width: 860px;
 	background-color: @white;
 	box-shadow: 0 0 40px @black;
-
-	@media (min-width: 768px) {
-		position: relative;
-	}
 
 	.images {
 		display: inline-block;
@@ -131,6 +127,10 @@
 			&:hover,
 			&:active {
 				background-color: @textColor;
+			}
+			&.disable {
+				background-color: @textColor;
+				cursor: defualt;
 			}
 		}
 	}
