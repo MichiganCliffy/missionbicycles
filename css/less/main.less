@@ -101,7 +101,7 @@ header {
 	}
 	.sliderNav {
 		position: absolute;
-		bottom: 0;
+		bottom: 5px;
 		width: 100%;
 		text-align: center;
 
@@ -110,9 +110,9 @@ header {
 
 			.navDot {
 				display: inline-block;
-				padding: 13px 9px;
-				font-size: 2em;
-				color: @textColor; // TODO: white
+				padding: 15px 10px;
+				font-size: 1.3em;
+				color: @white;
 				opacity: 0.5;
 				cursor: pointer;
 				.transition;
@@ -128,21 +128,30 @@ header {
 	.rightArrow {
 		display: inline-block;
 		position: absolute;
-		top: 48%;
-		left: 3%;
-		padding: 5px;
-		font-size: 2em;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 10%;
+		text-align: center;
+		font-size: 3em;
+		color: @white;
 		cursor: pointer;
-		.transition;
+		.transition(0.5s);
 
 		&:hover,
 		&.active {
-			color: @white; // switch
+			background-color: rgba(255,255,255, 0.1);
+		}
+
+		.fa {
+			position: absolute;
+			top: 48%;
 		}
 	}
 	.rightArrow {
 		left: auto;
-		right: 3%;
+		right: 0;
+		width: 9%;
 	}
 }
 .buttonCont {
@@ -163,6 +172,117 @@ header {
 		&:hover {
 			background-color: @textColor;
 			color: @white;
+		}
+	}
+}
+.quickViewBack {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10;
+	padding-top: 9%;
+	text-align: center;
+	background-color: rgba(0,0,0, 0.8);
+	box-shadow: 0 0 40px @black;
+}
+.quickViewBox {
+	position: relative;
+	display: inline-block;
+	width: 83%;
+	max-width: 860px;
+
+	.images {
+		display: inline-block;
+		vertical-align: top;
+		width: 69%;
+		min-height: 100%;
+
+		.mainImg {
+			width: 100%;
+		}
+		.thumbRow {
+			width: 100%;
+			overflow: hidden;
+
+			img {
+				display: inline-block;
+				width: 20%;
+
+				/*TODO: CSS3 greyscale image filter*/
+			}
+		}
+	}
+	.copy {
+		display: inline-block;
+		vertical-align: top;
+		position: relative;
+		width: 30%;
+		min-height: 100%;
+		padding: 25px 25px 30px;
+		text-align: left;
+		background-color: @white;
+
+		.model {
+			font-family: @serifFonts;
+			font-size: 1.5em;
+			margin-bottom: 20px;
+		}
+		.descCopy {
+			line-height: 1.3em;
+			margin-bottom: 15px;
+		}
+		.specTitle {
+			width: 100%;
+			margin-bottom: 20px;
+			font-weight: 700;
+			color: @lightGrey;
+			border-top: 1px solid @lightGrey;
+		}
+		.specRow {
+			width: 100%;
+			margin-bottom: 20px;
+
+			.specName {
+				width: 100%;
+				text-transform: uppercase;
+
+				.spec {
+					display: inline-block;
+					float: right;
+					font-weight: 700;
+					text-align: right;
+				}
+			}
+		}
+		button.buyNow {
+			width: 100%;
+			padding: 20px 25px;
+			text-align: center;
+			font-size: 1.3em;
+			font-weight: 700;
+			color: @white;
+			background-color: @missionGreen;
+			border: none;
+			.transition;
+
+			&:hover {
+				background-color: @textColor;
+			}
+		}
+	}
+	.close {
+		position: absolute;
+		top: 6px;
+		right: 17px;
+		font-size: 2em;
+		color: @lighterGrey;
+		cursor: pointer;
+		.transition;
+
+		&:hover {
+			color: @textColor;
 		}
 	}
 }

@@ -16,7 +16,7 @@
 		<img src="/images/logo.png">
 	</header>
 
-	<div class="sliderCont">
+	<div class="sliderCont" ng-cloak>
 		<div class="slider">
 			<div class="sliderImgCont" ng-repeat="product in catalog.products">
 				<div class="imgHeader">
@@ -28,7 +28,9 @@
 		</div>
 		<div class="sliderNav">
 			<div class="navDotCont" ng-repeat="product in catalog.products">
-				<a class="navDot" ng-click="goToSlide(product.id)">&bull;</a>
+				<a class="navDot" ng-class="{active:(slidePosition == product.id)}" ng-click="goToSlide(product.id)">
+					<i class="fa fa-circle"></i>
+				</a>
 			</div>
 		</div>
 		<div class="leftArrow" ng-click="prev()">
@@ -40,7 +42,35 @@
 	</div>
 
 	<div class="buttonCont">
-		<button ng-click="openQuickView()">QUICK VIEW</button>
+		<button ng-click="openQV()">QUICK VIEW</button>
+	</div>
+
+	<div class="quickViewBack" ng-if="showQV" ng-cloak>
+		<div class="quickViewBox"><div class="images"><img class="mainImg" src="/images/slideshow/{{focus.id}}.png"><div class="thumbRow"><img src="/images/slideshow/{{focus.id}}.png" ng-click="showThumb(0)"><img src="/images/thumbs/thumb2.png" ng-click="showThumb(1)"><img src="/images/thumbs/thumb3.png" ng-click="showThumb(2)"><img src="/images/thumbs/thumb4.png" ng-click="showThumb(3)"><img src="/images/thumbs/thumb5.png" ng-click="showThumb(4)"></div></div><div class="copy">
+				<div class="description">
+					<div class="model">{{focus.model}}</div>
+					<div class="descCopy">{{focus.description}}</div>
+				</div>
+				<div class="specs">
+					<div class="specTitle">
+						SPECS & MECHANICS
+					</div>
+					<div class="specRow">
+						<div class="specName">GEARING <span class="spec">{{focus.gearing}}</span></div>			
+					</div>
+					<div class="specRow">
+						<div class="specName">HANDLEBAR <span class="spec">{{focus.handlebars}}</span></div>		
+					</div>
+					<div class="specRow">
+						<div class="specName">FRAME SIZE <span class="spec">{{focus.frame}}</span></div>				
+					</div>
+				</div>
+				<button class="buyNow" type="button">BUY NOW - ${{focus.price}}</button>
+			</div>
+			<div class="close" ng-click="closeQV()">
+				<i class="fa fa-times"></i>
+			</div>
+		</div>
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

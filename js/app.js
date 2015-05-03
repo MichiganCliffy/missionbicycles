@@ -66,4 +66,21 @@ bikesApp.controller('mainController', ['$scope', '$http', '$window', function($s
 
 
 
+	// QUICK-VIEW POPUP CONTAINER
+	//==============================
+
+	$scope.showQV = false;
+
+	$scope.openQV = function() {
+		$scope.focus = $scope.catalog.products[$scope.slidePosition];
+
+		$scope.showQV = true;
+	}
+
+	$scope.closeQV = function() {
+		$scope.showQV = false;
+	}
+
+
+
 }]);
