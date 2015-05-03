@@ -32,6 +32,12 @@
 	-webkit-transition: all @time;
 	transition: all @time;
 }
+.serifFontHeader {
+	font-family: @serifFonts;
+	font-weight: 900;
+	font-style: italic;
+	text-transform: uppercase;
+}
 
 
 
@@ -61,6 +67,11 @@ header {
 		display: inline-block;
 	}
 }
+[ng-cloak] {
+	display: none;
+	visibility: none;
+}
+
 .sliderCont {
 	position: relative;
 	overflow: hidden;
@@ -87,6 +98,7 @@ header {
 				position: absolute;
 				top: 25px;
 				width: 100%;
+				color: @white;
 
 				.modelNo {
 					text-align: center;
@@ -94,7 +106,12 @@ header {
 				}
 				.modelName {
 					text-align: center;
-					font-size: 4em;
+					position: relative;
+					top: -10px;
+
+					font-size: 5em;
+					line-height: 1em;
+					.serifFontHeader;
 				}
 			}
 		}
@@ -140,7 +157,7 @@ header {
 
 		&:hover,
 		&.active {
-			background-color: rgba(255,255,255, 0.1);
+			background-color: rgba(255,255,255, 0.2);
 		}
 
 		.fa {
@@ -192,23 +209,35 @@ header {
 	display: inline-block;
 	width: 83%;
 	max-width: 860px;
+	background-color: @white;
 
 	.images {
 		display: inline-block;
-		vertical-align: top;
+		float: left;
 		width: 69%;
 		min-height: 100%;
 
 		.mainImg {
 			width: 100%;
+			float: left; /*added to hide phantom space*/
 		}
 		.thumbRow {
 			width: 100%;
 			overflow: hidden;
 
-			img {
+			.thumbCont {
 				display: inline-block;
 				width: 20%;
+				float: left;
+			}
+			img {
+				display: block;
+				width: 100%;
+				cursor: pointer;
+
+				&:hover {
+
+				}
 
 				/*TODO: CSS3 greyscale image filter*/
 			}
@@ -216,18 +245,19 @@ header {
 	}
 	.copy {
 		display: inline-block;
-		vertical-align: top;
+		float: left;
 		position: relative;
 		width: 30%;
 		min-height: 100%;
-		padding: 25px 25px 30px;
+		padding: 20px 30px 30px 25px;
 		text-align: left;
 		background-color: @white;
 
 		.model {
-			font-family: @serifFonts;
-			font-size: 1.5em;
 			margin-bottom: 20px;
+			padding-right: 15px; 
+			font-size: 1.5em;
+			.serifFontHeader;
 		}
 		.descCopy {
 			line-height: 1.3em;
@@ -258,7 +288,7 @@ header {
 		}
 		button.buyNow {
 			width: 100%;
-			padding: 20px 25px;
+			padding: 20px 15px;
 			text-align: center;
 			font-size: 1.3em;
 			font-weight: 700;
@@ -274,9 +304,9 @@ header {
 	}
 	.close {
 		position: absolute;
-		top: 6px;
-		right: 17px;
-		font-size: 2em;
+		top: 10px;
+		right: 25px;
+		font-size: 2.1em;
 		color: @lighterGrey;
 		cursor: pointer;
 		.transition;
@@ -284,5 +314,10 @@ header {
 		&:hover {
 			color: @textColor;
 		}
+	}
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
 	}
 }

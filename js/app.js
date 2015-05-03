@@ -13,7 +13,32 @@ bikesApp.controller('mainController', ['$scope', '$http', '$window', function($s
 			console.log('Data recieved:');
 			console.log(data);
 
-			// Break-up each model name into 2 properties
+			// Adjust data
+			angular.forEach(data.products, function(product, key) {
+
+				// Break up model number and name
+				var splitName = product.name.split(" ");
+				console.log(splitName);
+				product.model = splitName[0] +' '+ splitName[1] +' '+ splitName[2];
+				product.name = ''; // reset the name
+				for (var i = 3; i < splitName.length; i++) {
+					// model name begins after third string
+					product.name += splitName[i];
+
+					// add space if another word
+					if (splitName[i+1]) {
+						product.name += ' ';
+					}
+				}
+
+				// Add specs
+				product.gearing = 'freewheel';
+				product.handlebars = 'bullhorn';
+				product.frame = '5\'4\"-5\'11\"';
+			});
+
+			console.log('New data:');
+			console.log(data);
 
 			$scope.catalog = data;
 			setSlider($scope.catalog);

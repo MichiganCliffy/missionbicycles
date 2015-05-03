@@ -2,7 +2,7 @@
 <html ng-app="bikesApp">
 <head>
 	<meta charset='utf-8'>
-	<title>Mission Bicycles</title>
+	<title>Mission Bicycle Company</title>
 
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:900italic|Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -20,7 +20,7 @@
 		<div class="slider">
 			<div class="sliderImgCont" ng-repeat="product in catalog.products">
 				<div class="imgHeader">
-					<div class="modelNo">{{product.modelNo}}</div>
+					<div class="modelNo">{{product.model}}</div>
 					<div class="modelName">{{product.name}}</div>
 				</div>
 				<img class="productImg" ng-src="/images/slideshow/{{product.id}}.png">
@@ -28,7 +28,7 @@
 		</div>
 		<div class="sliderNav">
 			<div class="navDotCont" ng-repeat="product in catalog.products">
-				<a class="navDot" ng-class="{active:(slidePosition == product.id)}" ng-click="goToSlide(product.id)">
+				<a class="navDot" ng-class="{active:(slidePosition+1 == product.id)}" ng-click="goToSlide(product.id)">
 					<i class="fa fa-circle"></i>
 				</a>
 			</div>
@@ -46,9 +46,27 @@
 	</div>
 
 	<div class="quickViewBack" ng-if="showQV" ng-cloak>
-		<div class="quickViewBox"><div class="images"><img class="mainImg" src="/images/slideshow/{{focus.id}}.png"><div class="thumbRow"><img src="/images/slideshow/{{focus.id}}.png" ng-click="showThumb(0)"><img src="/images/thumbs/thumb2.png" ng-click="showThumb(1)"><img src="/images/thumbs/thumb3.png" ng-click="showThumb(2)"><img src="/images/thumbs/thumb4.png" ng-click="showThumb(3)"><img src="/images/thumbs/thumb5.png" ng-click="showThumb(4)"></div></div><div class="copy">
+		<div class="quickViewBox">
+
+			<div class="images">
+				<img class="mainImg" src="/images/slideshow/{{focus.id}}.png">
+				<div class="thumbRow">
+					<div class="thumbCont">
+						<img src="/images/slideshow/{{focus.id}}.png" ng-click="showThumb(0)"></div>
+					<div class="thumbCont">
+						<img src="/images/thumbs/thumb2.png" ng-click="showThumb(1)"></div>
+					<div class="thumbCont">
+						<img src="/images/thumbs/thumb3.png" ng-click="showThumb(2)"></div>
+					<div class="thumbCont">
+						<img src="/images/thumbs/thumb4.png" ng-click="showThumb(3)"></div>
+					<div class="thumbCont">
+						<img src="/images/thumbs/thumb5.png" ng-click="showThumb(4)"></div>
+				</div>
+			</div>
+
+			<div class="copy">
 				<div class="description">
-					<div class="model">{{focus.model}}</div>
+					<div class="model">{{focus.name}}</div>
 					<div class="descCopy">{{focus.description}}</div>
 				</div>
 				<div class="specs">
