@@ -1,0 +1,159 @@
+
+.quickViewBack {
+	position: fixed;
+	overflow-y: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10;
+	padding: 20% 0 10%;
+	text-align: center;
+	background-color: rgba(0,0,0, 0.8);
+	box-shadow: 0 0 40px @black;
+
+	@media (min-width: 768px) {
+		padding: 9% 0;
+	}
+}
+.quickViewBox {
+	display: inline-block;
+	width: 83%;
+	max-width: 860px;
+	background-color: @white;
+
+	@media (min-width: 768px) {
+		position: relative;
+	}
+
+	.images {
+		display: inline-block;
+		width: 100%;
+
+		@media (min-width: 768px) {
+			float: left;
+			width: 69%;
+			min-height: 100%;
+		}
+
+		.mainImg {
+			width: 100%;
+			float: left; /*added to hide phantom space*/
+		}
+		.thumbRow {
+			width: 100%;
+			overflow: hidden;
+
+			.thumbCont {
+				display: inline-block;
+				width: 20%;
+				float: left;
+			}
+			img {
+				display: block;
+				width: 100%;
+				cursor: pointer;
+				.transition;
+				-webkit-filter: brightness(.3);
+				filter: brightness(.3);
+
+				&:hover,
+				&.active {
+					-webkit-filter: brightness(1);
+					filter: brightness(1);
+				}
+
+				/*TODO: CSS3 greyscale image filter*/
+			}
+		}
+	}
+	.copy {
+		display: inline-block;
+		width: 100%;
+		padding: 20px 30px 20px 25px;
+		text-align: left;
+		background-color: @white;
+
+		@media (min-width: 768px) {
+			position: relative;
+			float: left;
+			width: 31%;
+			min-height: 100%;
+		}
+
+		.model {
+			margin-bottom: 15px;
+			padding-right: 15px; 
+			font-size: 1.5em;
+			.serifFontHeader;
+		}
+		.descCopy {
+			line-height: 1.3em;
+			margin-bottom: 15px;
+		}
+		.specTitle {
+			width: 100%;
+			margin-bottom: 20px;
+			padding-top: 10px;
+			font-weight: 700;
+			color: @lightGrey;
+			border-top: 1px solid @lightGrey;
+		}
+		.specRow {
+			width: 100%;
+			margin-bottom: 20px;
+
+			.specName {
+				width: 100%;
+				text-transform: uppercase;
+
+				.spec {
+					display: inline-block;
+					float: right;
+					font-weight: 700;
+					text-align: right;
+				}
+			}
+		}
+		button.buyNow {
+			width: 100%;
+			padding: 20px 15px;
+			text-align: center;
+			font-size: 1.3em;
+			font-weight: 700;
+			color: @white;
+			background-color: @missionGreen;
+			border: none;
+			.transition;
+
+			&:hover {
+				background-color: @textColor;
+			}
+		}
+	}
+	.close {
+		position: absolute;
+		top: 5px;
+		right: 20px;
+		padding: 15px;
+		font-size: 2.1em;
+		color: @lighterGrey;
+		cursor: pointer;
+		.transition;
+
+		&:hover {
+			color: @textColor;
+		}
+
+		@media (min-width:768px) {
+			top: 13px;
+			right: 25px;
+			padding: 0;			
+		}
+	}
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}

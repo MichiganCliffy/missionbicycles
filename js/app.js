@@ -3,22 +3,22 @@ var bikesApp = angular.module('bikesApp', [
 	'ngTouch'
 ]);
 
-bikesApp.controller('mainController', ['$scope', '$http', '$window', function($scope, $http, $window){
+bikesApp.controller('mainController', ['$scope', '$http', '$window', '$swipe', function($scope, $http, $window, $swipe){
 
 	// Get catalogue data
 	// If a multi-page app, would put this in a service
 	var url = 'http://seq-front-end-assessment.s3-website-us-west-2.amazonaws.com/catalog.json';
 	$http.get(url).
 		success(function(data, status){
-			console.log('Data recieved:');
-			console.log(data);
+			// console.log('Data recieved:');
+			// console.log(data);
 
 			// Adjust data
 			angular.forEach(data.products, function(product, key) {
 
 				// Break up model number and name
 				var splitName = product.name.split(" ");
-				console.log(splitName);
+
 				product.model = splitName[0] +' '+ splitName[1] +' '+ splitName[2];
 				product.name = ''; // reset the name
 				for (var i = 3; i < splitName.length; i++) {
@@ -32,13 +32,22 @@ bikesApp.controller('mainController', ['$scope', '$http', '$window', function($s
 				}
 
 				// Add specs
-				product.gearing = 'freewheel';
-				product.handlebars = 'bullhorn';
-				product.frame = '5\'4\"-5\'11\"';
+				product.specs = {};
+				product.specs.gearing = 'freewheel';
+				product.specs.handlebars = 'bullhorn';
+				product.specs.frame = '5\'4\"-5\'11\"';
+
+				// Add thumbnails
+				product.thumbs = [
+					"/images/thumbs/thumb1.png",
+					"/images/thumbs/thumb2.png",
+					"/images/thumbs/thumb3.png",
+					"/images/thumbs/thumb4.png"
+				];
 			});
 
-			console.log('New data:');
-			console.log(data);
+			// console.log('New data:');
+			// console.log(data);
 
 			$scope.catalog = data;
 			setSlider($scope.catalog);
@@ -48,34 +57,88 @@ bikesApp.controller('mainController', ['$scope', '$http', '$window', function($s
 		});
 
 
+
 	// SLIDER
 	//================
-	// If a larger app, would make own directive
+	// If a larger app, would make into own directive
+	var sliderEl = angular.element('.slider');
 
 	var setSlider = function(catalog){
 
-		// First, set container width
+		// Test for mobile by screen size
+		var isMobile = ($window.outerWidth < 768) ? 
+			true : false;
 		$scope.itemNumber = catalog.products.length;
-		$scope.itemWidth = $window.innerWidth * 0.8; // Set image width to 80% of window
-		var initialPos = $window.innerWidth * 0.1; // Center slider by moving left 10%;
+
+		if (isMobile) {
+			console.log('mobile device');
+			console.log('Width: '+ $window.outerWidth);
+
+			$scope.itemWidth = $window.outerWidth; // Full width on mobile
+			var initialPos = 0;
+		} else {
+			console.log('standard device');	
+
+			$scope.itemWidth = $window.innerWidth * 0.8; // Set image width to 80% of window
+			var initialPos = $window.innerWidth * 0.1; // Center slider by moving left 10%;
+		}
+
 		var sliderWidth = $scope.itemWidth * $scope.itemNumber;
 
-		angular.element('.slider').css({'width': sliderWidth, 'left':initialPos});
+		sliderEl.css({'width': sliderWidth, 'left':initialPos});
 	};
+
+	// Create touch event handler
+	$swipe.bind( sliderEl, {
+		'start': function(coords) {
+			startX = coords.x;
+			startY = coords.y;
+
+			startPos = parseInt( sliderEl.css('left'), 10);
+		},
+		'move': function(coords) {
+			var moveDist = startX - coords.x;
+			var slidePos = startPos - moveDist;
+
+			// console.log('Moving...' + moveDist);
+			// console.log('New left pos: '+ slidePos);
+
+			sliderEl.css('left', slidePos);
+		},
+		'end': function(coords) {
+			var fullDist = startX - coords.x;
+			console.log('Just moved '+ fullDist);
+
+			if (fullDist > 100 && ($scope.slidePosition < $scope.itemNumber-1) ) {
+				// next slide
+				sliderEl.css('left', startPos - $scope.itemWidth);
+				$scope.slidePosition++;
+			} else if (fullDist < -100 && ($scope.slidePosition > 0)) {
+				// previous slide
+				sliderEl.css('left', startPos + $scope.itemWidth);
+				$scope.slidePosition--;
+			} else {
+				sliderEl.css('left', startPos);
+			}
+		},
+		'cancel': function(coords) {
+			sliderEl.css('left', startPos);
+		}
+	});
 
 	// Set control actions
 	$scope.slidePosition = 0;
 
 	$scope.next = function() {
 		if ($scope.slidePosition < $scope.itemNumber-1) {
-			angular.element('.slider').css('left', '-='+$scope.itemWidth);
+			sliderEl.css('left', '-='+$scope.itemWidth);
 			$scope.slidePosition++;
 		}
 	};
 
 	$scope.prev = function() {
 		if ($scope.slidePosition > 0) {
-			angular.element('.slider').css('left', '+='+$scope.itemWidth);
+			sliderEl.css('left', '+='+$scope.itemWidth);
 			$scope.slidePosition--;
 		}
 	};
@@ -95,15 +158,28 @@ bikesApp.controller('mainController', ['$scope', '$http', '$window', function($s
 	//==============================
 
 	$scope.showQV = false;
+	$scope.currentThumb = 0;
 
 	$scope.openQV = function() {
 		$scope.focus = $scope.catalog.products[$scope.slidePosition];
 
 		$scope.showQV = true;
+		$scope.currentThumb = 0;
 	}
 
 	$scope.closeQV = function() {
 		$scope.showQV = false;
+	}
+
+	$scope.showThumb = function(num) {
+		$scope.currentThumb = num;
+		var mainImg = angular.element('.mainImg');
+
+		var newSrc = (num > 0) ? 
+			"/images/thumbs/thumb"+num+"_LARGE.png" :
+			"/images/slideshow/"+ $scope.focus.id + ".png";
+
+		mainImg.attr('src', newSrc);
 	}
 
 

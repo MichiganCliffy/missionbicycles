@@ -60,11 +60,20 @@ body {
 }
 header {
 	width: 100%;
-	padding: 25px 0 20px;
+	padding: 30px 0 35px;
 	text-align: center;
 
 	img {
 		display: inline-block;
+		width: 50%;
+	}
+
+	@media (min-width: 768px) {
+		padding: 25px 0 20px;
+
+		img {
+			width: auto;
+		}
 	}
 }
 [ng-cloak] {
@@ -72,108 +81,9 @@ header {
 	visibility: none;
 }
 
-.sliderCont {
-	position: relative;
-	overflow: hidden;
-	max-width: 100%;
-
-	.slider {
-		position: relative;
-		width: 100%;
-		left: 10%;
-		.transition(0.5s);
-
-		.sliderImgCont {
-			display: inline-block;
-			position: relative;
-			height: 100%;
-			width: 20%;
-			text-align: center;
-
-			img {
-				height: 100%;
-				width: 100%;
-			}
-			.imgHeader {
-				position: absolute;
-				top: 25px;
-				width: 100%;
-				color: @white;
-
-				.modelNo {
-					text-align: center;
-					font-size: 1.3em;
-				}
-				.modelName {
-					text-align: center;
-					position: relative;
-					top: -10px;
-
-					font-size: 5em;
-					line-height: 1em;
-					.serifFontHeader;
-				}
-			}
-		}
-	}
-	.sliderNav {
-		position: absolute;
-		bottom: 5px;
-		width: 100%;
-		text-align: center;
-
-		.navDotCont {
-			display: inline-block;
-
-			.navDot {
-				display: inline-block;
-				padding: 15px 10px;
-				font-size: 1.3em;
-				color: @white;
-				opacity: 0.5;
-				cursor: pointer;
-				.transition;
-
-				&:hover,
-				&.active {
-					opacity: 1.0;
-				}
-			}
-		}
-	}
-	.leftArrow,
-	.rightArrow {
-		display: inline-block;
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		width: 10%;
-		text-align: center;
-		font-size: 3em;
-		color: @white;
-		cursor: pointer;
-		.transition(0.5s);
-
-		&:hover,
-		&.active {
-			background-color: rgba(255,255,255, 0.2);
-		}
-
-		.fa {
-			position: absolute;
-			top: 48%;
-		}
-	}
-	.rightArrow {
-		left: auto;
-		right: 0;
-		width: 9%;
-	}
-}
 .buttonCont {
 	width: 100%;
-	padding: 17px 0;
+	padding: 30px 0;
 	text-align: center;
 
 	button {
@@ -191,133 +101,11 @@ header {
 			color: @white;
 		}
 	}
-}
-.quickViewBack {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 10;
-	padding-top: 9%;
-	text-align: center;
-	background-color: rgba(0,0,0, 0.8);
-	box-shadow: 0 0 40px @black;
-}
-.quickViewBox {
-	position: relative;
-	display: inline-block;
-	width: 83%;
-	max-width: 860px;
-	background-color: @white;
 
-	.images {
-		display: inline-block;
-		float: left;
-		width: 69%;
-		min-height: 100%;
-
-		.mainImg {
-			width: 100%;
-			float: left; /*added to hide phantom space*/
-		}
-		.thumbRow {
-			width: 100%;
-			overflow: hidden;
-
-			.thumbCont {
-				display: inline-block;
-				width: 20%;
-				float: left;
-			}
-			img {
-				display: block;
-				width: 100%;
-				cursor: pointer;
-
-				&:hover {
-
-				}
-
-				/*TODO: CSS3 greyscale image filter*/
-			}
-		}
-	}
-	.copy {
-		display: inline-block;
-		float: left;
-		position: relative;
-		width: 30%;
-		min-height: 100%;
-		padding: 20px 30px 30px 25px;
-		text-align: left;
-		background-color: @white;
-
-		.model {
-			margin-bottom: 20px;
-			padding-right: 15px; 
-			font-size: 1.5em;
-			.serifFontHeader;
-		}
-		.descCopy {
-			line-height: 1.3em;
-			margin-bottom: 15px;
-		}
-		.specTitle {
-			width: 100%;
-			margin-bottom: 20px;
-			font-weight: 700;
-			color: @lightGrey;
-			border-top: 1px solid @lightGrey;
-		}
-		.specRow {
-			width: 100%;
-			margin-bottom: 20px;
-
-			.specName {
-				width: 100%;
-				text-transform: uppercase;
-
-				.spec {
-					display: inline-block;
-					float: right;
-					font-weight: 700;
-					text-align: right;
-				}
-			}
-		}
-		button.buyNow {
-			width: 100%;
-			padding: 20px 15px;
-			text-align: center;
-			font-size: 1.3em;
-			font-weight: 700;
-			color: @white;
-			background-color: @missionGreen;
-			border: none;
-			.transition;
-
-			&:hover {
-				background-color: @textColor;
-			}
-		}
-	}
-	.close {
-		position: absolute;
-		top: 10px;
-		right: 25px;
-		font-size: 2.1em;
-		color: @lighterGrey;
-		cursor: pointer;
-		.transition;
-
-		&:hover {
-			color: @textColor;
-		}
-	}
-	&:after {
-		content: "";
-		display: table;
-		clear: both;
+	@media (min-width: 768px) {
+		padding: 20px 0;
 	}
 }
+
+@import "slider.less";
+@import "quickview.less";

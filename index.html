@@ -2,10 +2,14 @@
 <html ng-app="bikesApp">
 <head>
 	<meta charset='utf-8'>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Mission Bicycle Company</title>
 
+	<!-- FONTS -->
 	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:900italic|Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+	<!-- CSS -->
 	<link rel="stylesheet" href="/css/normalize.css">
 	<link rel="stylesheet" href="/css/main.css">
 </head>
@@ -49,18 +53,15 @@
 		<div class="quickViewBox">
 
 			<div class="images">
-				<img class="mainImg" src="/images/slideshow/{{focus.id}}.png">
+				<img class="mainImg" ng-src="/images/slideshow/{{focus.id}}.png">
 				<div class="thumbRow">
 					<div class="thumbCont">
-						<img src="/images/slideshow/{{focus.id}}.png" ng-click="showThumb(0)"></div>
-					<div class="thumbCont">
-						<img src="/images/thumbs/thumb2.png" ng-click="showThumb(1)"></div>
-					<div class="thumbCont">
-						<img src="/images/thumbs/thumb3.png" ng-click="showThumb(2)"></div>
-					<div class="thumbCont">
-						<img src="/images/thumbs/thumb4.png" ng-click="showThumb(3)"></div>
-					<div class="thumbCont">
-						<img src="/images/thumbs/thumb5.png" ng-click="showThumb(4)"></div>
+						<img ng-src="/images/slideshow/{{focus.id}}.png" ng-class="{active:currentThumb == 0}" ng-click="showThumb(0)">
+					</div>
+					<div class="thumbCont" ng-repeat="thumb in focus.thumbs track by $index">
+						<img ng-src="{{thumb}}" ng-class="{active:currentThumb == $index+1}"  ng-click="showThumb($index+1)">
+					</div>
+
 				</div>
 			</div>
 
@@ -73,14 +74,8 @@
 					<div class="specTitle">
 						SPECS & MECHANICS
 					</div>
-					<div class="specRow">
-						<div class="specName">GEARING <span class="spec">{{focus.gearing}}</span></div>			
-					</div>
-					<div class="specRow">
-						<div class="specName">HANDLEBAR <span class="spec">{{focus.handlebars}}</span></div>		
-					</div>
-					<div class="specRow">
-						<div class="specName">FRAME SIZE <span class="spec">{{focus.frame}}</span></div>				
+					<div class="specRow" ng-repeat="(key, val) in focus.specs">
+						<div class="specName">{{key}} <span class="spec">{{val}}</span></div>			
 					</div>
 				</div>
 				<button class="buyNow" type="button">BUY NOW - ${{focus.price}}</button>
@@ -91,6 +86,8 @@
 		</div>
 	</div>
 
+
+	<!-- SCRIPTS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-touch.js"></script>

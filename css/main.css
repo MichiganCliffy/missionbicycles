@@ -20,117 +20,28 @@ body {
 }
 header {
   width: 100%;
-  padding: 25px 0 20px;
+  padding: 30px 0 35px;
   text-align: center;
 }
 header img {
   display: inline-block;
+  width: 50%;
+}
+@media (min-width: 768px) {
+  header {
+    padding: 25px 0 20px;
+  }
+  header img {
+    width: auto;
+  }
 }
 [ng-cloak] {
   display: none;
   visibility: none;
 }
-.sliderCont {
-  position: relative;
-  overflow: hidden;
-  max-width: 100%;
-}
-.sliderCont .slider {
-  position: relative;
-  width: 100%;
-  left: 10%;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-}
-.sliderCont .slider .sliderImgCont {
-  display: inline-block;
-  position: relative;
-  height: 100%;
-  width: 20%;
-  text-align: center;
-}
-.sliderCont .slider .sliderImgCont img {
-  height: 100%;
-  width: 100%;
-}
-.sliderCont .slider .sliderImgCont .imgHeader {
-  position: absolute;
-  top: 25px;
-  width: 100%;
-  color: #ffffff;
-}
-.sliderCont .slider .sliderImgCont .imgHeader .modelNo {
-  text-align: center;
-  font-size: 1.3em;
-}
-.sliderCont .slider .sliderImgCont .imgHeader .modelName {
-  text-align: center;
-  position: relative;
-  top: -10px;
-  font-size: 5em;
-  line-height: 1em;
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-style: italic;
-  text-transform: uppercase;
-}
-.sliderCont .sliderNav {
-  position: absolute;
-  bottom: 5px;
-  width: 100%;
-  text-align: center;
-}
-.sliderCont .sliderNav .navDotCont {
-  display: inline-block;
-}
-.sliderCont .sliderNav .navDotCont .navDot {
-  display: inline-block;
-  padding: 15px 10px;
-  font-size: 1.3em;
-  color: #ffffff;
-  opacity: 0.5;
-  cursor: pointer;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-.sliderCont .sliderNav .navDotCont .navDot:hover,
-.sliderCont .sliderNav .navDotCont .navDot.active {
-  opacity: 1.0;
-}
-.sliderCont .leftArrow,
-.sliderCont .rightArrow {
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 10%;
-  text-align: center;
-  font-size: 3em;
-  color: #ffffff;
-  cursor: pointer;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-}
-.sliderCont .leftArrow:hover,
-.sliderCont .rightArrow:hover,
-.sliderCont .leftArrow.active,
-.sliderCont .rightArrow.active {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-.sliderCont .leftArrow .fa,
-.sliderCont .rightArrow .fa {
-  position: absolute;
-  top: 48%;
-}
-.sliderCont .rightArrow {
-  left: auto;
-  right: 0;
-  width: 9%;
-}
 .buttonCont {
   width: 100%;
-  padding: 17px 0;
+  padding: 30px 0;
   text-align: center;
 }
 .buttonCont button {
@@ -148,30 +59,188 @@ header img {
   background-color: #333333;
   color: #ffffff;
 }
+@media (min-width: 768px) {
+  .buttonCont {
+    padding: 20px 0;
+  }
+}
+.sliderCont {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+}
+.sliderCont .slider {
+  position: relative;
+  width: 100%;
+  /*.transition(0.5s);*/
+}
+@media (min-width: 768px) {
+  .sliderCont .slider {
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+}
+.sliderCont .slider .sliderImgCont {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  width: 20%;
+  text-align: center;
+}
+.sliderCont .slider .sliderImgCont img {
+  height: 100%;
+  width: 100%;
+}
+.sliderCont .slider .sliderImgCont .imgHeader {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  color: #ffffff;
+}
+.sliderCont .slider .sliderImgCont .imgHeader .modelNo {
+  display: none;
+  /*font-size: 1.0em;*/
+}
+.sliderCont .slider .sliderImgCont .imgHeader .modelName {
+  text-align: center;
+  position: relative;
+  top: -5px;
+  font-size: 3em;
+  line-height: 1em;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+}
+@media (min-width: 768px) {
+  .sliderCont .slider .sliderImgCont .imgHeader {
+    top: 25px;
+  }
+  .sliderCont .slider .sliderImgCont .imgHeader .modelNo {
+    display: block;
+    font-size: 1.3em;
+    text-align: center;
+  }
+  .sliderCont .slider .sliderImgCont .imgHeader .modelName {
+    top: -5px;
+    font-size: 5em;
+    line-height: 1em;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+  }
+}
+.sliderCont .sliderNav {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  text-align: center;
+}
+.sliderCont .sliderNav .navDotCont {
+  display: inline-block;
+}
+.sliderCont .sliderNav .navDotCont .navDot {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 1em;
+  color: #ffffff;
+  opacity: 0.5;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.sliderCont .sliderNav .navDotCont .navDot:hover,
+.sliderCont .sliderNav .navDotCont .navDot.active {
+  opacity: 1.0;
+}
+@media (min-width: 768px) {
+  .sliderCont .sliderNav .navDotCont .navDot {
+    padding: 15px 10px;
+    font-size: 1.3em;
+  }
+}
+.sliderCont .leftArrow,
+.sliderCont .rightArrow {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10%;
+  text-align: center;
+  font-size: 2em;
+  color: #ffffff;
+  cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.sliderCont .leftArrow:hover,
+.sliderCont .rightArrow:hover,
+.sliderCont .leftArrow.active,
+.sliderCont .rightArrow.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.sliderCont .leftArrow .fa,
+.sliderCont .rightArrow .fa {
+  position: absolute;
+  top: 48%;
+  left: 20%;
+}
+@media (min-width: 768px) {
+  .sliderCont .leftArrow,
+  .sliderCont .rightArrow {
+    font-size: 3em;
+  }
+}
+.sliderCont .rightArrow {
+  left: auto;
+  right: 0;
+  width: 9%;
+}
+.sliderCont .rightArrow .fa {
+  left: auto;
+  right: 20%;
+}
 .quickViewBack {
   position: fixed;
+  overflow-y: auto;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 10;
-  padding-top: 9%;
+  padding: 20% 0 10%;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 40px #000000;
 }
+@media (min-width: 768px) {
+  .quickViewBack {
+    padding: 9% 0;
+  }
+}
 .quickViewBox {
-  position: relative;
   display: inline-block;
   width: 83%;
   max-width: 860px;
   background-color: #ffffff;
 }
+@media (min-width: 768px) {
+  .quickViewBox {
+    position: relative;
+  }
+}
 .quickViewBox .images {
   display: inline-block;
-  float: left;
-  width: 69%;
-  min-height: 100%;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .quickViewBox .images {
+    float: left;
+    width: 69%;
+    min-height: 100%;
+  }
 }
 .quickViewBox .images .mainImg {
   width: 100%;
@@ -191,20 +260,34 @@ header img {
   display: block;
   width: 100%;
   cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-filter: brightness(0.3);
+  filter: brightness(0.3);
   /*TODO: CSS3 greyscale image filter*/
+}
+.quickViewBox .images .thumbRow img:hover,
+.quickViewBox .images .thumbRow img.active {
+  -webkit-filter: brightness(1);
+  filter: brightness(1);
 }
 .quickViewBox .copy {
   display: inline-block;
-  float: left;
-  position: relative;
-  width: 30%;
-  min-height: 100%;
-  padding: 20px 30px 30px 25px;
+  width: 100%;
+  padding: 20px 30px 20px 25px;
   text-align: left;
   background-color: #ffffff;
 }
+@media (min-width: 768px) {
+  .quickViewBox .copy {
+    position: relative;
+    float: left;
+    width: 31%;
+    min-height: 100%;
+  }
+}
 .quickViewBox .copy .model {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   padding-right: 15px;
   font-size: 1.5em;
   font-family: 'Playfair Display', serif;
@@ -219,6 +302,7 @@ header img {
 .quickViewBox .copy .specTitle {
   width: 100%;
   margin-bottom: 20px;
+  padding-top: 10px;
   font-weight: 700;
   color: #acacac;
   border-top: 1px solid #acacac;
@@ -254,8 +338,9 @@ header img {
 }
 .quickViewBox .close {
   position: absolute;
-  top: 10px;
-  right: 25px;
+  top: 5px;
+  right: 20px;
+  padding: 15px;
   font-size: 2.1em;
   color: #cccccc;
   cursor: pointer;
@@ -264,6 +349,13 @@ header img {
 }
 .quickViewBox .close:hover {
   color: #333333;
+}
+@media (min-width: 768px) {
+  .quickViewBox .close {
+    top: 13px;
+    right: 25px;
+    padding: 0;
+  }
 }
 .quickViewBox:after {
   content: "";
