@@ -40,10 +40,10 @@ bikesApp.controller('mainController', ['$scope', '$http', '$window', '$swipe', f
 
 				// Add thumbnails
 				product.thumbs = [
-					"/images/thumbs/thumb1.png",
-					"/images/thumbs/thumb2.png",
-					"/images/thumbs/thumb3.png",
-					"/images/thumbs/thumb4.png"
+					"images/thumbs/thumb1.png",
+					"images/thumbs/thumb2.png",
+					"images/thumbs/thumb3.png",
+					"images/thumbs/thumb4.png"
 				];
 			});
 
@@ -177,8 +177,8 @@ bikesApp.controller('mainController', ['$scope', '$http', '$window', '$swipe', f
 		var mainImg = angular.element('.mainImg');
 
 		var newSrc = (num > 0) ? 
-			"/images/thumbs/thumb"+num+"_LARGE.png" :
-			"/images/slideshow/"+ $scope.focus.id + ".png";
+			"images/thumbs/thumb"+num+"_LARGE.png" :
+			"images/slideshow/"+ $scope.focus.id + ".png";
 
 		mainImg.attr('src', newSrc);
 	}
