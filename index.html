@@ -27,7 +27,7 @@
 					<div class="modelNo">{{product.model}}</div>
 					<div class="modelName">{{product.name}}</div>
 				</div>
-				<img class="productImg" ng-src="/images/slideshow/{{product.id}}.png">
+				<img class="productImg" ng-src="images/slideshow/{{product.id}}.png">
 			</div>
 		</div>
 		<div class="sliderNav">
@@ -53,10 +53,10 @@
 		<div class="quickViewBox" ng-show="showQV">
 
 			<div class="images">
-				<img class="mainImg" ng-src="/images/slideshow/{{focus.id}}.png">
+				<img class="mainImg" ng-src="images/slideshow/{{focus.id}}.png">
 				<div class="thumbRow">
 					<div class="thumbCont">
-						<img ng-src="/images/slideshow/{{focus.id}}.png" ng-class="{active:currentThumb == 0}" ng-click="showThumb(0)">
+						<img ng-src="images/slideshow/{{focus.id}}.png" ng-class="{active:currentThumb == 0}" ng-click="showThumb(0)">
 					</div>
 					<div class="thumbCont" ng-repeat="thumb in focus.thumbs track by $index">
 						<img ng-src="{{thumb}}" ng-class="{active:currentThumb == $index+1}"  ng-click="showThumb($index+1)">
